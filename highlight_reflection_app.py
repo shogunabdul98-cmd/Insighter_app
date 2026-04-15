@@ -59,15 +59,7 @@ st.markdown('<h1 class="main-title">Insighter</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Between what is written and what is felt</p>', unsafe_allow_html=True)
 
 # Groq Client
-if "client" not in st.session_state:
-    api_key = os.environ.get("GROQ_API_KEY")
-    if not api_key:
-        api_key = st.text_input("Enter your Groq API Key:", type="password")
-        if not api_key:
-            st.stop()
-    st.session_state.client = Groq(api_key=api_key)
-
-client = st.session_state.client
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 col1, col2 = st.columns([2, 1])
 with col1:
